@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     use HasFactory;
-    protected $fillable = ["subject","description","status_id","customer_id","user_id"];
+    protected $fillable = ["subject","description","status_id","customer_id","user_id","queue_id"];
     //protected $with = ['status','customer','user'];
 
     public function status(){
@@ -19,5 +19,9 @@ class Ticket extends Model
     }
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function queue(){
+        return $this->belongsTo(Queue::class);
     }
 }

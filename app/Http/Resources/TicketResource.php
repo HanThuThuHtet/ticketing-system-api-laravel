@@ -23,7 +23,9 @@ class TicketResource extends JsonResource
             "status" => $this->status->name,
             "customer_id" => $this->customer_id,
             "customer" => $this->customer->name,
-            "user_id" => new UserResource($this->user),
+            "user_id" => $this->user_id,
+            "user" => new UserResource($this->user),
+            "queue_id" => $this->queue_id,
             "date" => $this->created_at->format("d M Y"),
             "time" => $this->created_at->format("H:i A"),
         ];

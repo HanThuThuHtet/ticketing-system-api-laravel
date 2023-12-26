@@ -5,6 +5,7 @@
 
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\CustomerApiController;
+use App\Http\Controllers\QueueApiController;
 use App\Http\Controllers\StatusApiController;
 use App\Http\Controllers\TicketApiController;
 use App\Http\Controllers\UserApiController;
@@ -33,19 +34,20 @@ Route::post('/login',[ApiAuthController::class,'login'])->name('api.login');
 
 Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout',[ApiAuthController::class,'logout'])->name('api.logout');
-    
+
     Route::apiResource('tickets',TicketApiController::class);
 
     Route::apiResource('statuses',StatusApiController::class);
     Route::apiResource('customers',CustomerApiController::class);
+    Route::apiResource('queues',QueueApiController::class);
 
     Route::get('/user/tickets',[UserApiController::class,'viewUserTickets']);
     Route::get('/user',[UserApiController::class,'user']);
-    
-    
+
+
 });
 
-    
+
 
 
 

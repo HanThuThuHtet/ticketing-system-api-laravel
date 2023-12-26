@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TicketCreateRequest extends FormRequest
+class StoreQueueRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class TicketCreateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,11 +24,7 @@ class TicketCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            "subject" => "required",
-            "description" => "required",
-            "status_id" => "required|exists:statuses,id",
-            "customer_id" => "required|exists:customers,id",
-            "queue_id" => "required|exists:queues,id",
+            //
         ];
     }
 }

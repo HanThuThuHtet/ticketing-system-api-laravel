@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TicketCreateRequest;
 use App\Http\Resources\TicketResource;
+use App\Models\Queue;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,13 +33,17 @@ class TicketApiController extends Controller
     public function store(TicketCreateRequest $request)
     {
         $data = $request->validated();
+        $queue = Queue::find($data['queue_id']);
         $ticket = Ticket::create([
             "subject" => $data["subject"],
             "description" => $data["description"],
             "status_id" => $data["status_id"],
             "customer_id" => $data["customer_id"],
-            "user_id" => Auth::id()
+            "user_id" => Auth::id(),
+            'queue_id' => $data['queue_id'],
         ]);
+
+        $ticket->queue()->associate($queue);
         //return response()->json($ticket->user_id);
         return response()->json([
             "message" => "Ticket Created",
@@ -60,6 +65,7 @@ class TicketApiController extends Controller
             return response()->json(["message" => "Ticket is not found"],404);
         }
         //return response()->json($ticket);
+        $this->authorize('view', $ticket);
         return new TicketResource($ticket);
     }
 
@@ -84,7 +90,7 @@ class TicketApiController extends Controller
         }
 
         $ticket->fill($request->only(['subject', 'description', 'status_id', 'customer_id']));
-       
+
         $ticket->save();
         //return response()->json($ticket);
         return response()->json([

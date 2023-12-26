@@ -20,6 +20,7 @@ class CreateTicketsTable extends Migration
             $table->foreignId('customer_id')->nullable();
             $table->foreignId('user_id')->nullable();
             $table->foreignId('status_id')->nullable();
+            $table->foreignId('queue_id')->nullable();
             $table->timestamps();
             $table->timestamp('resolved_at')->nullable();
         });

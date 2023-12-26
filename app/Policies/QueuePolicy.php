@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Ticket;
+use App\Models\Queue;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TicketPolicy
+class QueuePolicy
 {
     use HandlesAuthorization;
 
@@ -25,12 +25,12 @@ class TicketPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Ticket  $ticket
+     * @param  \App\Models\Queue  $queue
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Ticket $ticket)
+    public function view(User $user, Queue $queue)
     {
-        return $user->queues->contains($ticket->queue);
+        //
     }
 
     /**
@@ -48,10 +48,10 @@ class TicketPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Ticket  $ticket
+     * @param  \App\Models\Queue  $queue
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Ticket $ticket)
+    public function update(User $user, Queue $queue)
     {
         //
     }
@@ -60,10 +60,10 @@ class TicketPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Ticket  $ticket
+     * @param  \App\Models\Queue  $queue
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Ticket $ticket)
+    public function delete(User $user, Queue $queue)
     {
         //
     }
@@ -72,10 +72,10 @@ class TicketPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Ticket  $ticket
+     * @param  \App\Models\Queue  $queue
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Ticket $ticket)
+    public function restore(User $user, Queue $queue)
     {
         //
     }
@@ -84,10 +84,10 @@ class TicketPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Ticket  $ticket
+     * @param  \App\Models\Queue  $queue
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Ticket $ticket)
+    public function forceDelete(User $user, Queue $queue)
     {
         //
     }
